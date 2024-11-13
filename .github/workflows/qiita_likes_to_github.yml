@@ -78,4 +78,4 @@ jobs:
           git commit -m "Add generated graph for Qiita likes"
           git push
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_FOR_QIITA_REPO }}  # GitHubのデフォルトトークンを使用
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHubのデフォルトトークンを使用
