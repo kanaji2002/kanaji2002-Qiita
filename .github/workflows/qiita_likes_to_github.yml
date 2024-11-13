@@ -23,7 +23,7 @@ jobs:
       
       - name: Run script to generate graph
         env:
-          ACCESS_TOKEN: ${{ secrets.TOKEN_FOR_QIITA_REPO }}  # 統一されたトークン
+          ACCESS_TOKEN: ${{ secrets.QIITA_ACCESS_TOKEN}}  # 統一されたトークン
         run: |
           python <<EOF
           import os
@@ -78,4 +78,4 @@ jobs:
           git commit -m "Add generated graph for Qiita likes"
           git push
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHubのデフォルトトークンを使用
+          GITHUB_TOKEN: ${{ secrets.TOKEN_FOR_QIITA_REPO }}  # GitHubのデフォルトトークンを使用
