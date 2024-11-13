@@ -23,15 +23,16 @@ jobs:
       
       - name: Run script to generate graph
         env:
-          ACCESS_TOKEN: ${{ secrets.TOKEN_FOR_QIITA_REPO }}
+          ACCESS_TOKEN: ${{ secrets.TOKEN_FOR_QIITA_REPO }}  # 統一されたトークン
         run: |
           python <<EOF
+          import os
           import requests
           import pandas as pd
           import matplotlib.pyplot as plt
           from datetime import datetime
 
-          access_token = '${{ secrets.QIITA_ACCESS_TOKEN }}'
+          access_token = os.getenv('ACCESS_TOKEN')  # 環境変数として取得
           user_id = 'kanaji2002'
           start_date = '2024-11-01'
           end_date = '2024-11-30'
@@ -77,4 +78,4 @@ jobs:
           git commit -m "Add generated graph for Qiita likes"
           git push
         env:
-          GITHUB_TOKEN: ${{ secrets.QIITA_ACCESS_TOKEN}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHubのデフォルトトークンを使用
